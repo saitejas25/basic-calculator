@@ -1,6 +1,10 @@
 # CalcPro - Modern Basic Calculator
 
+[![Live Demo](https://img.shields.io/badge/demo-online-brightgreen)](https://saitejas25.github.io/basic-calculator/)
+
 A versatile, responsive, and robust basic calculator built with both a modern **Web interface (HTML/CSS/JS)** and native **Python implementations (GUI & CLI)**.
+
+🌐 **Live Deployed App**: [https://saitejas25.github.io/basic-calculator/](https://saitejas25.github.io/basic-calculator/)
 
 ---
 
