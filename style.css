@@ -1,0 +1,593 @@
+/* ==========================================================================
+   Modern Calculator Stylesheet
+   Supports Light & Dark themes, Glassmorphism, Responsive Grid & Mobile View
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* Theme: Dark (Default) */
+  --bg-page: #0f141c;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.15), transparent 45%),
+                 radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.15), transparent 45%),
+                 #0b0f17;
+  --card-bg: rgba(23, 29, 41, 0.85);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  --display-bg: rgba(14, 18, 27, 0.7);
+  --display-border: rgba(255, 255, 255, 0.05);
+  --display-text: #f8fafc;
+  --display-secondary: #94a3b8;
+  --brand-color: #38bdf8;
+
+  /* Button Themes */
+  --key-num-bg: rgba(30, 41, 59, 0.65);
+  --key-num-hover: rgba(51, 65, 85, 0.8);
+  --key-num-active: rgba(71, 85, 105, 0.9);
+  --key-num-text: #f1f5f9;
+  --key-num-border: rgba(255, 255, 255, 0.06);
+
+  --key-func-bg: rgba(51, 65, 85, 0.45);
+  --key-func-hover: rgba(71, 85, 105, 0.65);
+  --key-func-active: rgba(100, 116, 139, 0.8);
+  --key-func-text: #cbd5e1;
+  --key-func-border: rgba(255, 255, 255, 0.08);
+
+  --key-op-bg: rgba(59, 130, 246, 0.18);
+  --key-op-hover: rgba(59, 130, 246, 0.3);
+  --key-op-active: rgba(59, 130, 246, 0.45);
+  --key-op-text: #60a5fa;
+  --key-op-border: rgba(96, 165, 250, 0.25);
+
+  --key-equals-bg: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --key-equals-hover: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  --key-equals-active: #1d4ed8;
+  --key-equals-text: #ffffff;
+  --key-equals-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.5);
+
+  --drawer-bg: rgba(18, 24, 38, 0.96);
+  --drawer-border: rgba(255, 255, 255, 0.08);
+  --drawer-item-bg: rgba(30, 41, 59, 0.45);
+  --drawer-item-hover: rgba(51, 65, 85, 0.65);
+
+  --toast-bg: rgba(15, 23, 42, 0.92);
+  --toast-text: #f8fafc;
+  --toast-border: rgba(56, 189, 248, 0.4);
+
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-card: 28px;
+  --radius-key: 18px;
+}
+
+[data-theme="light"] {
+  --bg-page: #f1f5f9;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.1), transparent 40%),
+                 radial-gradient(circle at 85% 85%, rgba(147, 51, 234, 0.08), transparent 40%),
+                 #f8fafc;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(203, 213, 225, 0.7);
+  --card-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.8);
+
+  --display-bg: rgba(241, 245, 249, 0.75);
+  --display-border: rgba(203, 213, 225, 0.6);
+  --display-text: #0f172a;
+  --display-secondary: #64748b;
+  --brand-color: #0284c7;
+
+  /* Button Themes Light */
+  --key-num-bg: #ffffff;
+  --key-num-hover: #f8fafc;
+  --key-num-active: #e2e8f0;
+  --key-num-text: #0f172a;
+  --key-num-border: rgba(203, 213, 225, 0.8);
+
+  --key-func-bg: #e2e8f0;
+  --key-func-hover: #cbd5e1;
+  --key-func-active: #94a3b8;
+  --key-func-text: #334155;
+  --key-func-border: rgba(148, 163, 184, 0.3);
+
+  --key-op-bg: #eff6ff;
+  --key-op-hover: #dbeafe;
+  --key-op-active: #bfdbfe;
+  --key-op-text: #2563eb;
+  --key-op-border: rgba(147, 197, 253, 0.6);
+
+  --key-equals-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --key-equals-hover: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  --key-equals-active: #1e40af;
+  --key-equals-text: #ffffff;
+  --key-equals-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.35);
+
+  --drawer-bg: rgba(255, 255, 255, 0.98);
+  --drawer-border: rgba(226, 232, 240, 0.9);
+  --drawer-item-bg: #f8fafc;
+  --drawer-item-hover: #f1f5f9;
+
+  --toast-bg: rgba(15, 23, 42, 0.9);
+  --toast-text: #ffffff;
+  --toast-border: rgba(59, 130, 246, 0.5);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background-color: var(--brand-color);
+  color: #ffffff;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--display-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   Layout Containers
+   ========================================================================== */
+.calculator-app-container {
+  position: relative;
+  width: 100%;
+  max-width: 410px;
+  margin: auto;
+}
+
+.calculator-card {
+  position: relative;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--card-shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+/* Header */
+.calc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brand-color);
+  box-shadow: 0 0 10px var(--brand-color);
+}
+
+.brand-title {
+  background: linear-gradient(135deg, var(--display-text) 30%, var(--display-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.calc-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: var(--key-func-bg);
+  border: 1px solid var(--key-func-border);
+  color: var(--key-func-text);
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: var(--key-func-hover);
+  color: var(--display-text);
+  transform: translateY(-1px);
+}
+
+.icon-btn:active {
+  transform: translateY(0);
+}
+
+.icon-btn:focus-visible,
+.key:focus-visible,
+.copy-pill:focus-visible,
+.main-display:focus-visible {
+  outline: 2px solid var(--brand-color);
+  outline-offset: 2px;
+}
+
+/* Theme toggle icon state */
+[data-theme="dark"] .sun-icon {
+  display: block;
+}
+[data-theme="dark"] .moon-icon {
+  display: none;
+}
+[data-theme="light"] .sun-icon {
+  display: none;
+}
+[data-theme="light"] .moon-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   Display Area
+   ========================================================================== */
+.display-panel {
+  position: relative;
+  background: var(--display-bg);
+  border: 1px solid var(--display-border);
+  border-radius: 20px;
+  padding: 16px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 125px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.expression-line {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--display-secondary);
+  min-height: 1.3rem;
+  text-align: right;
+  word-break: break-all;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-bottom: 6px;
+}
+.expression-line::-webkit-scrollbar {
+  display: none;
+}
+
+.result-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.operator-badge {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  color: var(--brand-color);
+  font-weight: 600;
+}
+
+.main-display {
+  font-family: var(--font-mono);
+  font-size: 2.35rem;
+  font-weight: 600;
+  color: var(--display-text);
+  text-align: right;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: pointer;
+  max-width: 100%;
+}
+.main-display::-webkit-scrollbar {
+  display: none;
+}
+
+.copy-pill {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--display-secondary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.display-panel:hover .copy-pill,
+.copy-pill:focus-visible {
+  opacity: 0.85;
+  background: var(--key-func-bg);
+  border-color: var(--key-func-border);
+}
+
+.copy-pill:hover {
+  opacity: 1;
+  color: var(--brand-color);
+}
+
+/* ==========================================================================
+   Keypad Grid
+   ========================================================================== */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  user-select: none;
+}
+
+.key {
+  position: relative;
+  font-family: var(--font-main);
+  font-size: 1.28rem;
+  font-weight: 600;
+  border-radius: var(--radius-key);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.key:active,
+.key.active-key {
+  transform: scale(0.94);
+}
+
+/* Key Styles */
+.key-num {
+  background: var(--key-num-bg);
+  border: 1px solid var(--key-num-border);
+  color: var(--key-num-text);
+}
+.key-num:hover {
+  background: var(--key-num-hover);
+}
+
+.key-func {
+  background: var(--key-func-bg);
+  border: 1px solid var(--key-func-border);
+  color: var(--key-func-text);
+  font-size: 1.05rem;
+}
+.key-func:hover {
+  background: var(--key-func-hover);
+  color: var(--display-text);
+}
+
+.key-op {
+  background: var(--key-op-bg);
+  border: 1px solid var(--key-op-border);
+  color: var(--key-op-text);
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+.key-op:hover {
+  background: var(--key-op-hover);
+}
+
+.key-equals {
+  background: var(--key-equals-bg);
+  border: none;
+  color: var(--key-equals-text);
+  font-size: 1.6rem;
+  box-shadow: var(--key-equals-shadow);
+}
+.key-equals:hover {
+  background: var(--key-equals-hover);
+  box-shadow: 0 10px 24px -4px rgba(37, 99, 235, 0.65);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.calc-footer {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--display-secondary);
+}
+
+.calc-footer kbd {
+  font-family: var(--font-mono);
+  background: var(--key-func-bg);
+  border: 1px solid var(--key-func-border);
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.7rem;
+}
+
+/* ==========================================================================
+   History Drawer
+   ========================================================================== */
+.history-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--drawer-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid var(--drawer-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+  transform: translateX(105%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
+  visibility: hidden;
+}
+
+.history-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--drawer-border);
+  padding-bottom: 12px;
+}
+
+.history-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.text-btn {
+  background: transparent;
+  border: none;
+  color: var(--display-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.text-btn:hover {
+  background: var(--key-func-bg);
+  color: #ef4444;
+}
+
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scrollbar-color: var(--key-func-hover) transparent;
+  scrollbar-width: thin;
+  padding-right: 4px;
+}
+
+.history-item {
+  background: var(--drawer-item-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.history-item:hover {
+  background: var(--drawer-item-hover);
+  border-color: var(--brand-color);
+  transform: translateY(-1px);
+}
+
+.history-expr {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--display-secondary);
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.history-res {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--display-text);
+}
+
+.empty-history-msg {
+  text-align: center;
+  color: var(--display-secondary);
+  font-size: 0.9rem;
+  margin: auto;
+}
+
+/* ==========================================================================
+   Toast Notification
+   ========================================================================== */
+.toast {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--toast-bg);
+  border: 1px solid var(--toast-border);
+  color: var(--toast-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* Responsive tweaks */
+@media (max-width: 440px) {
+  .calculator-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+  .key {
+    height: 54px;
+    font-size: 1.2rem;
+  }
+  .main-display {
+    font-size: 2rem;
+  }
+}
